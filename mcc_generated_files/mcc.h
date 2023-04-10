@@ -52,13 +52,13 @@
 #include "pin_manager.h"
 #include <stdint.h>
 #include <stdbool.h>
-#include "reset.h"
-#include "uart1.h"
+#include "adc1.h"
 #include "tmr2.h"
-#include "watchdog.h"
+#include "uart1.h"
+#include "reset.h"
 #include "interrupt_manager.h"
 #include "traps.h"
-#include "adc1.h"
+#include "watchdog.h"
 #include "dma.h"
 
 #ifndef _XTAL_FREQ

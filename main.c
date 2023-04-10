@@ -6,7 +6,6 @@
 #include <string.h>
 #include "soft_i2c.h"
 #include "lcd_i2c.h"
-#include "adxl355.h"
 #include "twe_lite.h"
 
 
@@ -125,30 +124,8 @@ char check_rsv(void) {
 }
 
 
-uint8_t read355 = 0;
-
 void int_timer(void) {
-    if (TO_PIN23_GetValue()) { // I2Cアクセス同期信号H
-        read355 = 0;
-        return;
-    }
-    if (read355) {
-        read355 = 0;
-        return;
-    }
-    
-    HL16 x16;
-    
-    // 傾斜センサー値
-    signed long x = ADXL355_readAcc(ADXL355_ADR_X);
-    x >>= 4; // 16bitに収める
-    x16.SHL = (signed short)x;
-    send[2] = x16.L;
-    send[3] = x16.H;
-
-    // 受信データーを子ＰＩＣに送信
     spi_send();
-    read355 = 1;
 }
 
 
@@ -166,27 +143,9 @@ int main(void)
     //TMR2_SetInterruptHandler(int_timer);
 
     __delay_ms(100); // I2C バス安定化待ち    
-    LCD_i2c_init(8);
+//    LCD_i2c_init(8);
 
 
-//   while (1) {
-//        WATCHDOG_TimerClear();
-//        I2C_SDA_SetHigh();
-//        I2C_SCL_SetHigh();
-//        __delay_us(10);
-//        I2C_SCL_SetLow();
-//        __delay_us(10);
-//        I2C_SDA_SetLow();
-//        I2C_SCL_SetHigh();
-//        __delay_us(10);
-//        I2C_SCL_SetLow();
-//        __delay_us(10);
-//   }
-
-
-
-    ADXL355_init(6);
-    
     cnt_lowbatt = 0;
     now_lowbatt = 0; // ローバッテリーなら１
     fired = 0;
@@ -256,10 +215,10 @@ int main(void)
             // bit7  LeftU ↓（前照灯暗く）
             send[0] = (rsv[14] | 1);
 
-            // bit0  TRL-U キーが押されたら1（俯仰を水平に戻す）
-            // bit1  TRL-D キーが押されたら1（俯仰を水平に戻す）
-            // bit2  TRL-L が押されたら1（レーザー切り替え）
-            // bit3  TRL-R が押されたら1（レーザー切り替え）
+            // bit0  TRL-U キーが押されたら1（レーザー切り替え）
+            // bit1  TRL-D キーが押されたら1（レーザー切り替え）
+            // bit2  TRL-L が押されたら1（カメラ左移動）
+            // bit3  TRL-R が押されたら1（カメラ右移動）
             // bit4  カメラ切り替えスイッチが押されたら1
             // bit5  Rが押されたら1（セミオート射撃）
             // bit6  RLが押されたら1（フルオート射撃）
@@ -272,6 +231,18 @@ int main(void)
             }
             else {
                 TO_PIN19_SetLow();
+            }
+            if (send[1] & 8) {
+                TO_PIN21_SetHigh();
+            }
+            else {
+                TO_PIN21_SetLow();
+            }
+            if (send[1] & 4) {
+                TO_PIN23_SetHigh();
+            }
+            else {
+                TO_PIN23_SetLow();
             }
             
             // 左キャタ
