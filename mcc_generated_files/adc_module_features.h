@@ -20,7 +20,7 @@
     This header file provides module feature list for ADC driver.
     Generation Information :
         Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.166.0
-        Device            :  dsPIC33EV32GM102      
+        Device            :  dsPIC33EV256GM102      
     The generated drivers are tested against the following:
         Compiler          :  XC16 v1.41
         MPLAB 	          :  MPLAB X v5.30

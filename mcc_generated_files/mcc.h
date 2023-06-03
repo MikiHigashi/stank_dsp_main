@@ -14,7 +14,7 @@
     This header file provides implementations for driver APIs for all modules selected in the GUI.
     Generation Information :
         Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.166.0
-        Device            :  dsPIC33EV32GM102
+        Device            :  dsPIC33EV256GM102
     The generated drivers are tested against the following:
         Compiler          :  XC16 v1.41
         MPLAB             :  MPLAB X v5.30
@@ -52,13 +52,13 @@
 #include "pin_manager.h"
 #include <stdint.h>
 #include <stdbool.h>
-#include "adc1.h"
-#include "tmr2.h"
-#include "uart1.h"
-#include "reset.h"
 #include "interrupt_manager.h"
 #include "traps.h"
+#include "tmr2.h"
 #include "watchdog.h"
+#include "reset.h"
+#include "adc1.h"
+#include "uart1.h"
 #include "dma.h"
 
 #ifndef _XTAL_FREQ

@@ -16,7 +16,7 @@
     This source file provides implementations for PIN MANAGER.
     Generation Information :
         Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.166.0
-        Device            :  dsPIC33EV32GM102
+        Device            :  dsPIC33EV256GM102
     The generated drivers are tested against the following:
         Compiler          :  XC16 v1.41
         MPLAB 	          :  MPLAB X v5.30
@@ -2542,7 +2542,7 @@
 */
 /**
   @Summary
-    Configures the pin settings of the dsPIC33EV32GM102
+    Configures the pin settings of the dsPIC33EV256GM102
     The peripheral pin select, PPS, configuration is also handled by this manager.
 
   @Description

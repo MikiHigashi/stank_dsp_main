@@ -45,8 +45,8 @@ uint8_t sid[] = {0x82, 0x02, 0x2e, 0x90}; // 送信機の TWE LITE シリアル�
 uint8_t data[SPI_BYTES]; // SPI受信格納先
 uint8_t send[SPI_BYTES]; // SPI送信格納先
 
-#define CNT_LOWBATT 5 /* これだけ連続して電圧が低いとローバッテリー扱い */
-#define VOLT_LOWBATT 6500 /* ローバッテリー電圧 mV単位 */
+#define CNT_LOWBATT 100 /* これだけ連続して電圧が低いとローバッテリー扱い */
+#define VOLT_LOWBATT 6400 /* ローバッテリー電圧 mV単位 */
 uint8_t cnt_lowbatt = 0;
 uint8_t now_lowbatt = 0; // ローバッテリーなら１
 uint8_t fired; // 射撃弾数
@@ -268,7 +268,7 @@ int main(void)
         if (vv < VOLT_LOWBATT) {
             cnt_lowbatt ++;
             if (cnt_lowbatt >= CNT_LOWBATT) {
-                now_lowbatt = 1;
+                //now_lowbatt = 1; この段階でのローバッテリー判定しない
             }
         }
         else {

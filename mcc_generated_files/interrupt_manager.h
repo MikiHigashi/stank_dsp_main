@@ -15,7 +15,7 @@
     This source file provides implementations for PIC24 / dsPIC33 / PIC32MM MCUs interrupts.
     Generation Information : 
         Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.166.0
-        Device            :  dsPIC33EV32GM102
+        Device            :  dsPIC33EV256GM102
     The generated drivers are tested against the following:
         Compiler          :  XC16 v1.41
         MPLAB             :  MPLAB X v5.30
@@ -47,11 +47,11 @@
 
 /**
   @Summary
-    Initializes the interrupt priorities of the dsPIC33EV32GM102
+    Initializes the interrupt priorities of the dsPIC33EV256GM102
 
   @Description
     This routine sets the interrupt priorities of the modules that have been configured
-    for the dsPIC33EV32GM102
+    for the dsPIC33EV256GM102
 
   @Preconditions
     None.
@@ -76,10 +76,10 @@ void INTERRUPT_Initialize(void);
 
 /**
   @Summary
-    Enables global interrupts of the dsPIC33EV32GM102
+    Enables global interrupts of the dsPIC33EV256GM102
 
   @Description
-    This routine enables the global interrupt bit for the dsPIC33EV32GM102
+    This routine enables the global interrupt bit for the dsPIC33EV256GM102
 
   @Preconditions
     None.
@@ -107,10 +107,10 @@ inline static void INTERRUPT_GlobalEnable(void)
 
 /**
   @Summary
-    Disables global interrupts of the dsPIC33EV32GM102
+    Disables global interrupts of the dsPIC33EV256GM102
 
   @Description
-    This routine disables the global interrupt bit for the dsPIC33EV32GM102
+    This routine disables the global interrupt bit for the dsPIC33EV256GM102
 
   @Preconditions
     None.
